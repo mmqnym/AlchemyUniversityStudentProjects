@@ -26,4 +26,4 @@ Let's move towards Web3 together!
 
 ## Linense
 
-[MIT](./README.md)
+[MIT](./LICENSE.md)
