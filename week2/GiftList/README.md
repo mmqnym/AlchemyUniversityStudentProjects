@@ -4,17 +4,27 @@ To get started with the repository, clone it and then run `npm install` in the t
 
 There are three folders in this repository:
 
+## My solution
+
+This project is a bit like a ZK proof. What we want to do is to verify that the user is telling the truth when the server only knows the markle root.
+
+First, the user generates a markle tree from the known list, and generates their own proof from the markle tree.
+
+> Since the server has already known the markle root in advance, user fakes the proof or the proof loses data during transmission, which will lead to server verification fail.
+
+Now the server can verify that the user is actually in the list, and if so, it will get the same value as the merkle root that the server didn't do anything bad to.
+
 ## Client
 
 You can run the client from the top-level directory with `node client/index`. This file is a script which will send an HTTP request to the server.
 
-Think of the client as the _prover_ here. It needs to prove to the server that some `name` is in the `MERKLE_ROOT` on the server. 
+Think of the client as the _prover_ here. It needs to prove to the server that some `name` is in the `MERKLE_ROOT` on the server.
 
 ## Server
 
 You can run the server from the top-level directory with `node server/index`. This file is an express server which will be hosted on port 1225 and respond to the client's request.
 
-Think of the server as the _verifier_ here. It needs to verify that the `name` passed by the client is in the `MERKLE_ROOT`. If it is, then we can send the gift! 
+Think of the server as the _verifier_ here. It needs to verify that the `name` passed by the client is in the `MERKLE_ROOT`. If it is, then we can send the gift!
 
 ## Utils
 
