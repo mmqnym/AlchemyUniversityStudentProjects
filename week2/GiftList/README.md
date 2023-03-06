@@ -6,11 +6,11 @@ There are three folders in this repository:
 
 ## My solution
 
-This project is a bit like a ZK proof. What we want to do is to verify that the user is telling the truth when the server only knows the markle root.
+This project is a bit like a ZK proof. What we want to do is to verify that the user is telling the truth when the server only knows the merkle root.
 
-First, the user generates a markle tree from the known list, and generates their own proof from the markle tree.
+First, the user generates a merkle tree from the known list, and generates their own proof from the merkle tree.
 
-> Since the server has already known the markle root in advance, user fakes the proof or the proof loses data during transmission, which will lead to server verification fail.
+> Since the server has already known the merkle root in advance, user fakes the proof or the proof loses data during transmission, which will lead to server verification fail.
 
 Now the server can verify that the user is actually in the list, and if so, it will get the same value as the merkle root that the server didn't do anything bad to.
 
