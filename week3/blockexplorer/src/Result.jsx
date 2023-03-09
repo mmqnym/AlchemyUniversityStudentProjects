@@ -7,13 +7,13 @@ function Result({ data, reference }) {
     <div className="w-full">
       <table className="w-full table-fixed">
         <tbody>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">
               Block Height:
             </td>
             <td className="px-4 py-2 text-white">{data.height}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Status:</td>
             <td
               className={`px-4 py-2 ${
@@ -47,13 +47,13 @@ function Result({ data, reference }) {
               </div>
             </td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Timestamp:</td>
             <td className="break-words px-4 py-2 text-white">
               {data.timestamp}
             </td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">
               Transactions:
             </td>
@@ -66,11 +66,11 @@ function Result({ data, reference }) {
       <div className="my-2 w-full border-b border-gray-400"></div>
       <table className="w-full table-fixed">
         <tbody>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Miner:</td>
             <td className="break-all px-4 py-2 text-white">{data.miner}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">
               Total Difficulty:
             </td>
@@ -78,7 +78,7 @@ function Result({ data, reference }) {
               {data.totalDifficulty}
             </td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Size:</td>
             <td className="break-all px-4 py-2 text-white">{data.size}</td>
           </tr>
@@ -87,15 +87,15 @@ function Result({ data, reference }) {
       <div className="my-2 w-full border-b border-gray-400"></div>
       <table className="w-full table-fixed">
         <tbody>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Gas Used:</td>
             <td className="break-all px-4 py-2 text-white">{data.gasUsed}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Gas Limit:</td>
             <td className="break-all px-4 py-2 text-white">{data.gasLimit}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">
               Base Fee Per Gas:
             </td>
@@ -103,11 +103,11 @@ function Result({ data, reference }) {
               {data.baseFeePerGas}
             </td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Burnt Fees:</td>
             <td className="break-all px-4 py-2 text-white">{data.burntFees}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Extra Data:</td>
             <td className="break-all px-4 py-2 text-white">{data.extraData}</td>
           </tr>
@@ -116,11 +116,11 @@ function Result({ data, reference }) {
       <div className="my-2 w-full border-b border-gray-400"></div>
       <table className="w-full table-fixed">
         <tbody>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Hash:</td>
             <td className="break-all px-4 py-2 text-white">{data.hash}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">
               Parent Hash:
             </td>
@@ -128,7 +128,7 @@ function Result({ data, reference }) {
               {data.parentHash}
             </td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">
               Base Fee Per Gas:
             </td>
@@ -136,11 +136,11 @@ function Result({ data, reference }) {
               {data.baseFeePerGas}
             </td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">StateRoot:</td>
             <td className="break-all px-4 py-2 text-white">{data.stateRoot}</td>
           </tr>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Nonce:</td>
             <td className="break-all px-4 py-2 text-white">{data.nonce}</td>
           </tr>
@@ -149,7 +149,7 @@ function Result({ data, reference }) {
       <div className="my-2 w-full border-b border-gray-400"></div>
       <table className="w-full table-fixed">
         <tbody>
-          <tr className="text-sm md:text-lg">
+          <tr className="md:text-md text-sm">
             <td className="break-words px-4 py-2 text-gray-300">Reference:</td>
             <td className="break-all px-4 py-2 text-blue-400 hover:text-blue-300">
               <a href={reference} target="_blank">
