@@ -9,10 +9,10 @@ Let's move towards Web3 together!
 - Week1 - ECDSA Node simulation
 - Week2 - Gift List using Merkle tree
 - Week3 - Block explorer <[Online Demo](https://blockexplorer.whileweb3.dev/)>
-- Week4 - Intermediate contract
+- Week4 - Intermediate contract <[Contract](https://goerli.etherscan.io/address/0xe519A0543E8184aA36B57aE38Ec5aADa17982A76)>
 - Week5 -
-- Week6 -
-- Week7 - 
+- Week6 - Practicing contract skills on the AU coding platform
+- Week7 - Practicing contract skills on the AU coding platform
 - Week8 - Final Project()
 
 ## Refenence
