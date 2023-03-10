@@ -20,7 +20,7 @@ contract Contract {
 
 ## My solution
 
-To emit this event, we need to solve the condition `msg.sender ! = tx.origin`. The solution is to create an intermediate contract to call the target contract, so that `msg.sender` becomes the address of the intermediate contract, and `tx.origin` is the EOA address of the call to the intermediate contract, which are not equal.
+To emit this event, we need to solve the condition `msg.sender != tx.origin`. The solution is to create an intermediate contract to call the target contract, so that `msg.sender` becomes the address of the intermediate contract, and `tx.origin` is the EOA address of the call to the intermediate contract, which are not equal.
 
 Use hardhat to deploy the following intermediate contract:
 https://goerli.etherscan.io/address/0xe519a0543e8184aa36b57ae38ec5aada17982a76#code
