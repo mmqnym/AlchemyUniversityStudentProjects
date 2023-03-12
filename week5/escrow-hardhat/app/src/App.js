@@ -54,7 +54,7 @@ function App() {
             document.getElementById(escrowContract.address).className =
               "complete";
             document.getElementById(escrowContract.address).innerText =
-              "✓ It's been approved! hello";
+              "✓ It's been approved!";
           });
 
           const approveTxn = await approve(escrowContract, signer);
@@ -75,49 +75,49 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-800 w-full bg-cover absolute flex flex-row gap-10 justify-evenly items-start min-h-screen">
-      <div className="mt-60 contract flex flex-col border-2 rounded-lg border-gray-400 p-4 shadow-md shadow-gray-300 bg-slate-600 w-1/5">
-        <h1 className="text-2xl pb-2 text-blue-400"> New Contract </h1>
-        <div className="border-t-2 pb-6 border-gray-400"></div>
-        <div className="flex flex-col group px-2">
+    <div className="absolute flex min-h-screen w-full flex-row items-start justify-evenly gap-10 bg-gray-800 bg-cover">
+      <div className="contract mt-60 flex w-1/5 flex-col rounded-lg border-2 border-gray-400 bg-slate-600 p-4 shadow-md shadow-gray-300">
+        <h1 className="pb-2 text-2xl text-blue-400"> New Contract </h1>
+        <div className="border-t-2 border-gray-400 pb-6"></div>
+        <div className="group flex flex-col px-2">
           <label className="text-gray-100 group-focus-within:text-violet-300">
             Arbiter Address
           </label>
           <input
             type="text"
             id="arbiter"
-            className="bg-slate-700/50 rounded-md py-0.5 mt-2 focus:ring focus:ring-violet-300 focus:outline-none px-2 text-blue-400"
+            className="mt-2 rounded-md bg-slate-700/50 py-0.5 px-2 text-blue-400 focus:outline-none focus:ring focus:ring-violet-300"
           />
         </div>
-        <div className="flex flex-col group mt-4 px-2">
+        <div className="group mt-4 flex flex-col px-2">
           <label className="text-gray-100 group-focus-within:text-violet-300">
             Beneficiary Address
           </label>
           <input
             type="text"
             id="beneficiary"
-            className="bg-slate-700/50 rounded-md py-0.5 mt-2 focus:ring focus:ring-violet-300 focus:outline-none px-2 text-blue-400"
+            className="mt-2 rounded-md bg-slate-700/50 py-0.5 px-2 text-blue-400 focus:outline-none focus:ring focus:ring-violet-300"
           />
         </div>
 
-        <div className="flex flex-col group mt-4 px-2">
+        <div className="group mt-4 flex flex-col px-2">
           <label className="text-gray-100 group-focus-within:text-violet-300">
             Deposit Amount
           </label>
           <input
             type="text"
             id="etherAmount"
-            className="bg-slate-700/50 rounded-md py-0.5 mt-2 focus:ring focus:ring-violet-300 focus:outline-none px-2 text-blue-400"
+            className="mt-2 rounded-md bg-slate-700/50 py-0.5 px-2 text-blue-400 focus:outline-none focus:ring focus:ring-violet-300"
           />
         </div>
 
-        <div className="flex justify-center mt-6 mb-2">
+        <div className="mt-6 mb-2 flex justify-center">
           <button
             className={`button ${
               buttonClicked
                 ? "cursor-not-allowed"
-                : "cursor-pointer text-blue-400 text-lg hover:text-white hover:bg-blue-500 hover:border-transparent"
-            } bg-slate-600 px-4 py-1 mt-4 rounded-md border-2 border-blue-200`}
+                : "cursor-pointer text-lg text-blue-400 hover:border-transparent hover:bg-blue-500 hover:text-white"
+            } mt-4 rounded-md border-2 border-blue-200 bg-slate-600 px-4 py-1`}
             id="deploy"
             disabled={buttonClicked}
             onClick={(e) => {
@@ -129,7 +129,7 @@ function App() {
             <p className={`button ${buttonClicked ? "" : "hidden"}`}>
               <svg
                 aria-hidden="true"
-                className="w-6 h-6 mx-4 my-1 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                className="mx-4 my-1 h-6 w-6 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -151,10 +151,10 @@ function App() {
       <div
         className={`${
           escrows.length === 0 ? "hidden" : ""
-        } mt-60 existing-contracts flex flex-col border-2 rounded-lg border-gray-400 p-4 shadow-md shadow-gray-300 bg-slate-600 w-1/4 mb-20 max-h-[70vh] overflow-y-auto`}
+        } existing-contracts mt-60 mb-20 flex max-h-[70vh] w-1/4 flex-col overflow-y-auto rounded-lg border-2 border-gray-400 bg-slate-600 p-4 shadow-md shadow-gray-300`}
       >
-        <h1 className="text-2xl pb-2 text-blue-400"> Existing Contracts </h1>
-        <div className="border-t-2 pb-6 border-gray-400"></div>
+        <h1 className="pb-2 text-2xl text-blue-400"> Existing Contracts </h1>
+        <div className="border-t-2 border-gray-400 pb-6"></div>
 
         <div id="container">
           {escrows.map((escrow) => {
