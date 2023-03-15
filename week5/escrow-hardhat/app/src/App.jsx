@@ -34,7 +34,7 @@ function App() {
   const { data: signer } = useSigner();
 
   useEffect(() => {
-    if (!currentChain || chain !== currentChain) {
+    if (chain !== currentChain) {
       currentChain = chain;
       setEscrows([]); // reload page
     }
