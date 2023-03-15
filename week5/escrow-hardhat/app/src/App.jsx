@@ -2,35 +2,53 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import deploy from "./deploy";
 import Escrow from "./Escrow";
+import { emitToast } from "./emitToastify";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+import { useSigner, useNetwork } from "wagmi";
 
-export async function approve(escrowContract, signer) {
+let currentChain = null;
+let currentSigner = null;
+
+export async function approve(escrowContract) {
   try {
-    const approveTxn = await escrowContract.connect(signer).approve();
+    const approveTxn = await escrowContract.connect(currentSigner).approve();
     await approveTxn.wait();
+    emitToast("success", "Success: The asset has been sent");
     return approveTxn;
   } catch (e) {
     console.error(e.message);
+
+    if (e.message.includes("rejected")) {
+      emitToast("error", "User denied the transaction!");
+    } else if (e.message.includes("gas")) {
+      emitToast("error", "Permission error: You are not arbiter!");
+    }
   }
 }
 
 function App() {
   const [escrows, setEscrows] = useState([]);
-  const [account, setAccount] = useState();
-  const [signer, setSigner] = useState();
-
   const [buttonClicked, setButtonClicked] = useState(false);
 
+  const { chain } = useNetwork();
+  const { data: signer } = useSigner();
+
   useEffect(() => {
-    async function getAccounts() {
-      const accounts = await provider.send("eth_requestAccounts", []);
-      setAccount(accounts[0]);
-      setSigner(provider.getSigner());
+    if (!currentChain || chain !== currentChain) {
+      currentChain = chain;
+      setEscrows([]); // reload page
     }
 
-    getAccounts();
-  }, [account]);
+    return () => {
+      setEscrows([]);
+    };
+  }, [chain]);
+
+  useEffect(() => {
+    if (!currentSigner || signer !== currentSigner) {
+      currentSigner = signer;
+    }
+  }, [signer]);
 
   async function newContract() {
     setButtonClicked(true);
@@ -43,8 +61,10 @@ function App() {
       const escrowContract = await deploy(signer, arbiter, beneficiary, value);
 
       await escrowContract.deployTransaction.wait();
+      emitToast("success", "Success: The contract has been deployed");
 
       const escrow = {
+        chainName: chain.name,
         address: escrowContract.address,
         arbiter,
         beneficiary,
@@ -57,7 +77,7 @@ function App() {
               "✓ It's been approved!";
           });
 
-          const approveTxn = await approve(escrowContract, signer);
+          const approveTxn = await approve(escrowContract);
           return approveTxn;
         },
       };
@@ -66,8 +86,15 @@ function App() {
     } catch (e) {
       console.error(e.message);
 
-      if (e.message.includes("rejected")) {
-        console.log("User denide the transaction!");
+      if (!currentSigner) {
+        emitToast("error", "Please connect the wallet first!");
+      } else if (e.message.includes("rejected")) {
+        emitToast("error", "User denied the transaction!");
+      } else if (e.message.includes("invalid")) {
+        emitToast(
+          "error",
+          "Please make sure you have entered the addresses & amount!"
+        );
       }
     } finally {
       setButtonClicked(false);

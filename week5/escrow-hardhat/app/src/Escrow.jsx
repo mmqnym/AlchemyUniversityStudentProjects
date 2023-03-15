@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { emitToast } from "./emitToastify";
 
 export default function Escrow({
+  chainName,
   address,
   arbiter,
   beneficiary,
@@ -9,11 +12,33 @@ export default function Escrow({
 }) {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [transactionHash, setTransactionHash] = useState("");
+  const [explorerPrefix, setExplorerPrefix] = useState("");
+
+  useEffect(() => {
+    if (chainName === "Goerli") {
+      setExplorerPrefix(process.env.REACT_APP_EXPLORER_URL_GOERLI);
+    } else if (chainName === "Sepolia") {
+      setExplorerPrefix(process.env.REACT_APP_EXPLORER_URL_SEPOLIA);
+    } else {
+      setExplorerPrefix(process.env.REACT_APP_EXPLORER_URL_MAINNET);
+    }
+
+    return () => {
+      setExplorerPrefix("");
+    };
+  }, [chainName]);
 
   return (
     <div className="existing-contract border-1 mb-6 break-all rounded-lg border-gray-400 bg-slate-700/50 py-4 px-2">
       <h1 className="pb-1 pl-0.5 text-xl text-blue-400"> Contract Address </h1>
-      <p className="pb-1 pl-0.5 text-black">{address}</p>
+      <a
+        href={`${explorerPrefix}address/${address}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="pb-1 pl-0.5 text-black hover:text-gray-900"
+      >
+        {address}
+      </a>
       <div className="border-t-2 border-gray-400 pb-6"></div>
       <ul className="fields pl-0.5">
         <li>
@@ -36,9 +61,16 @@ export default function Escrow({
         <p className={`${transactionHash ? "text-gray-100" : "hidden"}`}>
           Transaction Hash
         </p>
-        <p className={`${transactionHash ? "text-pink-700" : "hidden"}`}>
+        <a
+          href={`${explorerPrefix}tx/${transactionHash}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${
+            transactionHash ? "text-pink-700 hover:text-pink-500" : "hidden"
+          }`}
+        >
           {transactionHash}
-        </p>
+        </a>
         <div className="mt-1 mb-2 mr-4 flex justify-end">
           <button
             className={`button ${
@@ -57,8 +89,8 @@ export default function Escrow({
                   const approveTxn = await handleApprove();
                   setTransactionHash(approveTxn.hash);
                 } catch (e) {
-                  if (e.message.includes("undifined")) {
-                    // User denied the transaction
+                  if (e.message.includes("rejected")) {
+                    emitToast("error", "User denied the transaction!");
                   }
                   setButtonClicked(false);
                 }
